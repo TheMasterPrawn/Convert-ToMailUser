@@ -13,12 +13,12 @@
     You may need to do this if you get failures in a hybrid exchange move, or have other Office 365 related
     challenges in hybrid where a mailbox move failed but is valid at the target. 
 
-    msExchRecipientTypeDetails = “2147483648” Remote user mailbox
-    msExchRecipientDisplayType = “-2147483642” Synced mailbox user
-    msExchRemoteRecipientType = “4” migrated mailbox
-    Exchange 2007  = “4535486012416”
-    Exchange 2010 = “44220983382016”
-    Exchange 2013 = “88218628259840”
+    msExchRecipientTypeDetails = â€œ2147483648â€ Remote user mailbox
+    msExchRecipientDisplayType = â€œ-2147483642â€ Synced mailbox user
+    msExchRemoteRecipientType = â€œ4â€ migrated mailbox
+    Exchange 2007  = â€œ4535486012416â€
+    Exchange 2010 = â€œ44220983382016â€
+    Exchange 2013 = â€œ88218628259840â€
 #>
 
 
@@ -47,8 +47,6 @@ foreach($address in $ProxyAddresses)
 
 if($targetAddress)
 {
-Get-ADUser  $samAccountName 
-$targetAddress
 Get-ADUser  $samAccountName  | `
 Set-ADUser -Clear homeMDB, homeMTA, msExchHomeServerName `
     -Replace @{ msExchVersion=$msExchVersion;msExchRecipientDisplayType="-2147483642";msExchRecipientTypeDetails="2147483648";msExchRemoteRecipientType="4";targetAddress=$targetAddress }
